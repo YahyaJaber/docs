@@ -47,11 +47,15 @@ To open up a terminal, you have several approaches available:
     ls /dev/tty.usb*
     ```
 
+
     You'll see the list of available USB serial devices. Once you've found the once matching the Cisco console, connect using the following command:
 
     ```bash
     screen <device> 115200 # e.g. screen /dev/tty.usbserial-AO001X6M 115200
     ```
+    +For Windows, you can download Putty or any serial software, Select Serial COM based on your Console-USB, and make sure to use 115200 speed
+
+
 
 ### System setup
 
@@ -60,6 +64,8 @@ This part covers **setting up basic system and network parameters**: updating it
 You'll notice that the user shell is quite different from Unix-based shells. This shell is called **standalone mode**, and is meant for a basic usage of the gateway. In many cases, the standalone mode shell won't let you input unexpected characters and entries. In any shell, you can use the `?` command to show the list of available commands.
 
 First, type `root` to login as the privileged user, and enter `enable` to turn on privileged commands. To verify that privileged commands are enabled, check that the prompt is `Gateway#` and not `Gateway>`.
+
+Note: When purchasing a new IXM gateway, make sure to order it as a standalone unit, otherwise you will have to purchase an IR809 router to convert the IXM to standalone, there is no other way to do it. to convert the IXM to a standalone using the IR809 router you will have to connect the IXM as a vitrual interface "VLPWA" on the router and then access it to conver it. please refer to the following configuration guide on how to access the IXM as a virtual interface https://www.cisco.com/c/en/us/td/docs/routers/access/800/829/software/configuration/guide/b_IR800config/b_vlpwa.html
 
 #### Update
 
@@ -339,3 +345,7 @@ This script will be called at every startup of the container. To enable it immed
 ### Exit container shell
 
 If you are done with configuration, you can now safely remove the serial cable between your computer.
+
+
+### Reset the IXM to default:
+next to the console port the reset button, keep pressing it for more than 5 seconds to reset the device to factory defaults. 
